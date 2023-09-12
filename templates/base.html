@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+  <title>My Flask Website</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom one">
+      <div class="container-fluid"> <!-- Remove the 'container' class to align to the left -->
+          <a class="navbar-brand" href="#">
+              <i class="fas fa-map-marker-alt"></i> Alfad Specialist Hospital, Kuje
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{url_for('home')}}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{url_for('data')}}">User Data</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{url_for('register')}}">Register</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{url_for('read')}}">Read</a>
+                  </li>
+              </ul>
+              <span class="navbar-text">
+                  <i class="far fa-clock"></i> Office Hours: 8:00 AM – 5.00 PM
+              </span>
+              <div class="navbar-nav ml-auto">
+                <div class="d-flex flex-row">
+                    <a class="nav-link" href="#"><i class="fab fa-facebook"></i></a>
+                    <a class="nav-link" href="#"><i class="fab fa-linkedin"></i></a>
+                    <a class="nav-link" href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+          </div>
+      </div>
+  </nav>
+</header>
+
+{% block content %}
+{% endblock content %}
+<footer class="bg-dark text-white py-4 cont">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-6">
+              <p>&copy; 2023 Quantum Innovative Technologies. All rights reserved.</p>
+          </div>
+          <div class="col-lg-6">
+              <form action="mailto:igatajohn15@gmail.com" method="POST" enctype="text/plain">
+                  <div class="input-group">
+                      <input type="email" class="form-control" name="email" placeholder="Subscribe to our newsletter">
+                      <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">Subscribe</button>
+                      </div>
+                  </div>
+              </form>
+              <ul class="list-inline text-lg-right mt-2">
+                  <li class="list-inline-item"><a href="#">Home</a></li>
+                  <li class="list-inline-item"><a href="#">About</a></li>
+                  <li class="list-inline-item"><a href="#">Services</a></li>
+                  <li class="list-inline-item"><a href="#">Contact</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+<!-- Include this in your HTML head section -->
+
+
+<script type='text/javascript'>
+  const socket = io.connect('http://' + document.domain + ':' + location.port);
+  const eventSource = new EventSource('/sse'); 
+  
+  socket.on('connect', function () {
+      console.log('Connected to WebSocket server');
+  });
+  
+  socket.on('disconnect', function () {
+      console.log('Disconnected from WebSocket server');
+  });
+  
+  socket.on('update_card', function (cardId) {
+      console.log('Received updated card ID:', cardId);
+      document.getElementById('card-id').value = cardId;
+  });
+// Assuming you have already initialized the socket connection
+
+function deleteEntry(entryId) {
+  if (confirm("Are you sure you want to delete this entry?")) {
+      const deleteForm = document.getElementById("deleteForm");
+      deleteForm.action = `/delete/${entryId}`;
+      deleteForm.submit();
+  }
+}
+eventSource.onmessage = function(event) {
+  const eventData = JSON.parse(event.data);  // Parse the SSE data
+  if (eventData.card_id) {
+      updateEntry();  // Call the function to update the content
+  }
+};
+function updateEntry() {
+  $.ajax({
+    url: '/read',  // URL of the /read route
+    type: 'GET',  // Change the request type to POST
+    success: function(response) {
+      $('#entry_container').html(response);  // Update the entry container with the response HTML
+    },
+    error: function(error) {
+      console.log('Error:', error);
+    }
+  });
+}
+
+</script>
+
+</body>
+</html>

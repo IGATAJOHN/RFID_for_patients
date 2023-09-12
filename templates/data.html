@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='container-fluid'>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Card ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Photo Path</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for card_entry in card_entries %}
+                <tr>
+                    <td>{{ card_entry.card_id }}</td>
+                    <td>{{ card_entry.full_name }}</td>
+                    <td>{{ card_entry.email }}</td>
+                    <td>{{ card_entry.phone }}</td>
+                    <td>{{ card_entry.message }}</td>
+                    <td>{{ card_entry.photo_path }}</td>
+                    <td>
+                        <a href="{{ url_for('edit', entry_id=card_entry.id) }}" class="btn btn-primary">Edit</a>
+                        <button type="button" onclick="deleteEntry({{ card_entry.id }})" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <form id="deleteForm" method="post" action="">
+        <input type="hidden" name="_method" value="DELETE">
+    </form>
+</div>
+{% endblock content %}

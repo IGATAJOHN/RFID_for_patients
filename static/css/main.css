@@ -1,0 +1,214 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  
+    margin: 0; /* Remove default margin */
+    padding: 0; /*
+}
+body {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Arrange elements in a column */
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+
+
+}
+.navbar-custom {
+    background-color: #003366; /* Darker background color */
+  }
+
+  .navbar-custom .navbar-nav .nav-link {
+    color: #ffffff; /* White text color */
+  }
+
+  .navbar-custom .navbar-text {
+    color: #ffffff; /* White text color */
+    margin-right: 10px; /* Margin on the right side */
+  }
+
+  .navbar-custom-white {
+    background-color: #ffffff; /* White background color */
+    height: 80px; /* Larger height */
+  }
+
+  .navbar-custom-white .navbar-brand {
+    margin-left: 2px; /* Margin on the left side */
+  }
+
+  .navbar-custom-white .nav-link {
+    color: #000000; /* Black text color */
+  }
+
+  .navbar-custom-white .navbar-nav {
+    margin: 0 auto; /* Center alignment */
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-custom-white .navbar-nav .call-us {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-custom-white .navbar-nav .call-us .phone-number {
+    margin-left: 5px;
+  }
+
+  .navbar-custom .social-icons {
+    margin-left: auto; /* Align to the right */
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-custom .social-icons i {
+    margin-right: 10px; /* Margin between icons */
+    color: #ffffff; /* White icon color */
+  }
+
+  .navbar-custom-white .navbar-nav .nav-link {
+    color: #000000; /* Black text color */
+  }
+  .banner {
+    display: flex;
+    align-items: center;
+    padding: 50px;
+  }
+
+  .banner-text {
+    flex: 1;
+  }
+
+  .banner-photo {
+    flex: 1;
+    text-align: right;
+  }
+
+  .carousel .carousel-item {
+    opacity: 0;
+    transition-duration: 1s;
+    transition-property: opacity;
+  }
+
+  .carousel .carousel-item.active {
+    opacity: 1;
+  }
+
+  .carousel .carousel-item-next.carousel-item-left,
+  .carousel .carousel-item-prev.carousel-item-right {
+    opacity: 0.5;
+  }
+
+  .carousel .carousel-item-next,
+  .carousel .carousel-item-prev,
+  .carousel .carousel-item.active {
+    display: block;
+  }
+  .heading-blue {
+    color: #003366;
+  }
+
+  .heading-green {
+    color: #006400;
+  }
+
+  .heading-purple {
+    color: #800080;
+  }
+
+  .heading-orange {
+    color: #FF8C00;
+  }
+  table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .marquee {
+        white-space: nowrap; /* Prevent line breaks */
+        overflow: hidden; /* Hide overflowing text */
+        color: #007FFF;
+        font-size: 24px;
+        text-align: right;
+      }
+      
+      .marquee p {
+        display: inline-block; /* Display as inline block to enable the marquee effect */
+        animation: marqueeAnimation 10s linear infinite; /* 10 seconds for the full loop */
+      }
+      
+      @keyframes marqueeAnimation {
+        0% {
+          transform: translateX(100%); /* Start off-screen to the right */
+        }
+        100% {
+          transform: translateX(-100%); /* End off-screen to the left */
+        }
+      }
+      
+    
+  
+  /* Add these styles to your CSS file */
+  .card-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-photo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-photo img {
+    width: 150px; /* Set a fixed width */
+    height: 150px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio while filling the container */
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .card-data p {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media screen and (max-width: 600px) {
+    .card-data {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cont {
+    margin-top: 40px; /* Add the desired margin value */
+   height: 300px;
+}
+.one{
+    margin-bottom: 5px;
+    height: 40%;
+}
+.two{
+    margin-bottom: 40px;
+    background: none;
+}

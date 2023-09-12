@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Card ID Display</title>
+</head>
+<body>
+    <h1>Detected Card ID:</h1>
+    <div id="cardId"></div>
+    <script>
+        const cardIdDisplay = document.getElementById('cardId');
+
+        function fetchCardId() {
+            // Use AJAX to fetch the latest card ID
+            fetch('/fetch_card_id')
+                .then(response => response.text())
+                .then(cardId => {
+                    cardIdDisplay.textContent = cardId;
+                });
+        }
+
+        // Fetch the card ID every 2 seconds
+        setInterval(fetchCardId, 2000);
+    </script>
+</body>
+</html>

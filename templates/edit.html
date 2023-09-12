@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block content %}
+    <h1>Edit Card Entry</h1>
+    <form method="post" action="{{ url_for('edit', entry_id=card_entry.id) }}" enctype="multipart/form-data">
+        <label for="card_id">Card ID:</label>
+        <input type="text" name="card_id" id="card_id" value="{{ card_entry.card_id }}" required><br>
+        <label for="full_name">Full Name:</label>
+        <input type="text" name="full_name" id="full_name" value="{{ card_entry.full_name }}" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{ card_entry.email }}" required><br>
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" id="phone" value="{{ card_entry.phone }}" required><br>
+        <label for="message">Message:</label>
+        <textarea name="message" id="message" required>{{ card_entry.message }}</textarea><br>
+        <label for="photo">Photo:</label>
+        <input type="file" name="photo" id="photo"><br>
+        <img src="{{ card_entry.photo_path }}" alt="Current Photo" style="max-width: 200px;"><br>
+        <input type="submit" value="Save Changes">
+    </form>
+{% endblock content%}
